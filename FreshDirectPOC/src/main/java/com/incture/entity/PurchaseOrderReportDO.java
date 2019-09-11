@@ -27,7 +27,7 @@ public class PurchaseOrderReportDO {
 	private Date dateCreated;
 	
 	@Column(name="DELIVERY_DATE")
-	private String deliverDate;
+	private Date deliverDate;
 	
 	@Column(name="PO_STATUS",length=5)
 	private String pOStatus;
@@ -72,11 +72,11 @@ public class PurchaseOrderReportDO {
 		this.dateCreated = dateCreated;
 	}
 
-	public String getDeliverDate() {
+	public Date getDeliverDate() {
 		return deliverDate;
 	}
 
-	public void setDeliverDate(String deliverDate) {
+	public void setDeliverDate(Date deliverDate) {
 		this.deliverDate = deliverDate;
 	}
 
@@ -90,10 +90,11 @@ public class PurchaseOrderReportDO {
 
 	@Override
 	public String toString() {
-		return "PurchaseOrderReport [pONumber=" + pONumber + ", pOQuantity=" + pOQuantity + ", totalPrice=" + totalPrice
-				+ ", plant=" + plant + ", dateCreated=" + dateCreated + ", deliverDate=" + deliverDate + ", pOStatus="
-				+ pOStatus + "]";
+		return "PurchaseOrderReportDO [pONumber=" + pONumber + ", pOQuantity=" + pOQuantity + ", totalPrice="
+				+ totalPrice + ", plant=" + plant + ", dateCreated=" + dateCreated + ", deliverDate=" + deliverDate
+				+ ", pOStatus=" + pOStatus + "]";
 	}
+
 	
 	
 

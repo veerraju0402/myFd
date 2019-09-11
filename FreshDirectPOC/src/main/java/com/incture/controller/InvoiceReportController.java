@@ -25,7 +25,7 @@ InvoiceReportService InvoiceReportService;
 	
 	@GetMapping("/msg")
 	public String message(){
-		return "welcome message from usercontroller";
+		return "welcome message from InvoiceReportController";
 	}
 
 	@PostMapping("/addInvoiceReport")

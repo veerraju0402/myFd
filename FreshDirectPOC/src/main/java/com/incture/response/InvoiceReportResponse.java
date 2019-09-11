@@ -2,9 +2,10 @@ package com.incture.response;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.incture.DTO.InvoiceReportDTO;
-import com.incture.entity.InvoiceReportDO;
 
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class InvoiceReportResponse {
 
 	
