@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.incture.DTO.InvoiceReportDTO;
 import com.incture.entity.InvoiceReportDO;
+import com.incture.response.InvoiceReportResponse;
 import com.incture.service.InvoiceReportService;
 
 @RestController
@@ -27,7 +28,7 @@ InvoiceReportService InvoiceReportService;
 		return "welcome message from usercontroller";
 	}
 
-	@PostMapping("/addInvoiceReportDO")
-	public String addInvoiceReportDO(@RequestBody InvoiceReportDTO invoiceReportDTO){
-		return InvoiceReportService.addInvoiceReportDO(invoiceReportDTO);}
+	@PostMapping("/addInvoiceReport")
+	public InvoiceReportResponse addInvoiceReportDetails(@RequestBody InvoiceReportDTO invoiceReportDTO){
+		return InvoiceReportService.addInvoiceReportDetails(invoiceReportDTO);}
 }

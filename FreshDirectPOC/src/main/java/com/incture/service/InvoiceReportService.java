@@ -1,9 +1,10 @@
 package com.incture.service;
 
 import com.incture.DTO.InvoiceReportDTO;
+import com.incture.response.InvoiceReportResponse;
 
 public interface InvoiceReportService {
 
-	String addInvoiceReportDO(InvoiceReportDTO invoiceReportDTO);
+	InvoiceReportResponse addInvoiceReportDetails(InvoiceReportDTO invoiceReportDTO);
 
 }
