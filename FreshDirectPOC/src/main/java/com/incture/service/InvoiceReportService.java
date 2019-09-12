@@ -1,10 +1,19 @@
 package com.incture.service;
 
+import com.incture.DTO.FetchInvoiceReport;
+import com.incture.DTO.FetchRemmitanceReportDTO;
 import com.incture.DTO.InvoiceReportDTO;
-import com.incture.response.InvoiceReportResponse;
+import com.incture.response.ResponseMessage;
 
 public interface InvoiceReportService {
 
-	InvoiceReportResponse addInvoiceReportDetails(InvoiceReportDTO invoiceReportDTO);
+	ResponseMessage addInvoiceReportDetails(InvoiceReportDTO invoiceReportDTO);
+
+	ResponseMessage fetchInvoiceReportReport(FetchInvoiceReport fetchInvoiceReport);
+
+	ResponseMessage getAllInvoiceReportReportDetails();
+	
+	ResponseMessage fetchRemmitanceReportDetails(FetchRemmitanceReportDTO fetchRemmitanceReportDTO);
+
 
 }

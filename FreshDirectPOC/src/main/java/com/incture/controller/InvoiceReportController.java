@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.incture.DTO.FetchInvoiceReport;
+import com.incture.DTO.FetchRemmitanceReportDTO;
 import com.incture.DTO.InvoiceReportDTO;
 import com.incture.entity.InvoiceReportDO;
-import com.incture.response.InvoiceReportResponse;
+import com.incture.response.ResponseMessage;
 import com.incture.service.InvoiceReportService;
 
 @RestController
@@ -29,6 +31,22 @@ InvoiceReportService InvoiceReportService;
 	}
 
 	@PostMapping("/addInvoiceReport")
-	public InvoiceReportResponse addInvoiceReportDetails(@RequestBody InvoiceReportDTO invoiceReportDTO){
+	public ResponseMessage addInvoiceReportDetails(@RequestBody InvoiceReportDTO invoiceReportDTO){
 		return InvoiceReportService.addInvoiceReportDetails(invoiceReportDTO);}
+	
+	@GetMapping("/getAllInvoiceReport")
+	public ResponseMessage getAllInvoiceReportReportDetails(){
+		return InvoiceReportService.getAllInvoiceReportReportDetails();
+	}
+	
+	@GetMapping("/fetchInvoiceReport")
+	public ResponseMessage fetchInvoiceReportReport(@RequestBody FetchInvoiceReport fetchInvoiceReport){
+		return InvoiceReportService.fetchInvoiceReportReport(fetchInvoiceReport);
+	}
+	
+	@GetMapping("/fetchRemmitanceReport")
+	public ResponseMessage fetchRemmitanceReportDetails(@RequestBody FetchRemmitanceReportDTO fetchRemmitanceReportDTO){
+		return InvoiceReportService.fetchRemmitanceReportDetails(fetchRemmitanceReportDTO);
+	}
+	
 }

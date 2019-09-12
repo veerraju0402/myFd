@@ -3,18 +3,22 @@ package com.incture.DAO;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.SQLQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Repository;
 
+import com.incture.DTO.FetchStockOnHandReportDTO;
+import com.incture.DTO.InvoiceReportDTO;
 import com.incture.DTO.PurchaseOrderReportDTO;
 import com.incture.DTO.StockOnHandReportDTO;
 import com.incture.entity.PurchaseOrderReportDO;
 import com.incture.entity.StockOnHandReportDO;
-import com.incture.response.PurchaseOrderReportResponse;
-import com.incture.response.StockOnHandReportResponse;
+import com.incture.response.ResponseMessage;
 import com.incture.utility.StringUtils;
 
+@Repository
 public class StockOnHandReportDAO extends BaseDAO{
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(StockOnHandReportDAO.class);
@@ -32,8 +36,9 @@ public class StockOnHandReportDAO extends BaseDAO{
 		return stockOnHandReportDTO;}
 
 
-	public StockOnHandReportResponse addstockOnHandReportDetails(StockOnHandReportDTO stockOnHandReportDTO) {
-		StockOnHandReportResponse stockOnHandReportResponse=new StockOnHandReportResponse();
+	public ResponseMessage addstockOnHandReportDetails(StockOnHandReportDTO stockOnHandReportDTO) {
+		//StockOnHandReportResponse stockOnHandReportResponse=new StockOnHandReportResponse();
+		ResponseMessage stockOnHandReportResponse=new ResponseMessage();
 		StockOnHandReportDO purchaseOrderReportDO=null;
 		try{
 			session=getSession();
@@ -61,36 +66,94 @@ public class StockOnHandReportDAO extends BaseDAO{
 		
 	}
 
-	public PurchaseOrderReportResponse getAllPurchaseOrderReportDetails() {
-		StockOnHandReportResponse stockOnHandReportResponse=new StockOnHandReportResponse();
-		StockOnHandReportDTO purchaseOrderReportDO=null;
-			PurchaseOrderReportDTO purchaseOrderReportDTO=null;
-		List<PurchaseOrderReportDTO> purchaseOrderReportDTOList=null;
+	public ResponseMessage getAllStockOnHandReportDetails() {
+		ResponseMessage stockOnHandReportResponse=new ResponseMessage();
+		StockOnHandReportDTO stockOnHandReportDTO=null;
+		List<Object> stockOnHandReportDTOList=null;
 		try{
 			session=getSession();
-			List<PurchaseOrderReportDO> purchaseOrderReportDOList=session.createQuery("from PurchaseOrderReportDO").list();
-			if(purchaseOrderReportDOList.size()>0){
-				purchaseOrderReportDTOList=new ArrayList<PurchaseOrderReportDTO>();
-				for(PurchaseOrderReportDO purchaseOrderReportDO:purchaseOrderReportDOList){
-					purchaseOrderReportDTO=	exportFromDB(purchaseOrderReportDO);
-					purchaseOrderReportDTOList.add(purchaseOrderReportDTO);
+			List<StockOnHandReportDO> stockOnHandReportDOList=session.createQuery("from StockOnHandReportDO").list();
+			if(stockOnHandReportDOList.size()>0){
+				stockOnHandReportDTOList=new ArrayList<Object>();
+				for(StockOnHandReportDO stockOnHandReportDO:stockOnHandReportDOList){
+					stockOnHandReportDTO=	exportFromDB(stockOnHandReportDO);
+					stockOnHandReportDTOList.add(stockOnHandReportDTO);
 				}
-				purchaseOrderReportResponse.setStatusCode(200);
-				purchaseOrderReportResponse.setMessage("success");
-				purchaseOrderReportResponse.setPurchaseOrderReportDTOList(purchaseOrderReportDTOList);
-				return purchaseOrderReportResponse;
+				stockOnHandReportResponse.setStatusCode(200);
+				stockOnHandReportResponse.setMessage("success");
+				stockOnHandReportResponse.setStatusMesaage(" null payload( for reference)");
+				//stockOnHandReportResponse.setStockOnHandReportDTOList(stockOnHandReportDTOList);
+				stockOnHandReportResponse.setObjList(stockOnHandReportDTOList);
+				return stockOnHandReportResponse;
 			}
 			else{
-				purchaseOrderReportResponse.setStatusCode(200);
-				purchaseOrderReportResponse.setMessage("NO RECORDS EXISTS");
-				return purchaseOrderReportResponse;
+				stockOnHandReportResponse.setStatusCode(200);
+				stockOnHandReportResponse.setMessage("NO RECORDS EXISTS");
+				return stockOnHandReportResponse;
 			}
 		}catch(Exception e ){
 			LOGGER.error("Exception:-"+e.getMessage());
-			purchaseOrderReportResponse.setStatusCode(500);
-			purchaseOrderReportResponse.setMessage("Exception:-"+e.getMessage());
-			return purchaseOrderReportResponse;
+			stockOnHandReportResponse.setStatusCode(500);
+			stockOnHandReportResponse.setMessage("Exception:-"+e.getMessage());
+			return stockOnHandReportResponse;
 		}
+	}
+
+	@SuppressWarnings("null")
+	public ResponseMessage fetchStockOnHandReportDetails(FetchStockOnHandReportDTO fetchStockOnHandReportDTO) {
+		ResponseMessage stockOnHandReportResponse=new ResponseMessage();
+		List<Object> stockOnHandReport=null;
+		//List<StockOnHandReportDTO> stockOnHandReportDTOList=null;
+		StockOnHandReportDTO stockOnHandReportDTO=null;
+		if(StringUtils.isEmptyObject(fetchStockOnHandReportDTO)){
+			return getAllStockOnHandReportDetails();
+		}else{
+		try{
+			session=getSession();
+			
+			String queryString="SELECT "+"S.VENDOR_MATERIAL_ID, "+"S.MATERIAL_ID,"+"S.MATERIAL_DESCRIPTION,"+"S.PLANT,"+"S.TOTAL_UNITS,"+"S.UOM FROM "+"\"SYSTEM\".\"STOCK_ON_HAND_REPORT\" AS S "+" WHERE (1=1)";
+			if(!StringUtils.isEmpty(fetchStockOnHandReportDTO.getPlant()))
+				queryString+=" AND S.PLANT='"+fetchStockOnHandReportDTO.getPlant()+"'";
+			if(!StringUtils.isEmpty(fetchStockOnHandReportDTO.getMaterial()))
+				queryString+=" AND S.MATERIAL_ID='"+fetchStockOnHandReportDTO.getMaterial()+"'";
+			
+			if(!StringUtils.isEmpty(fetchStockOnHandReportDTO.getVendorMaterial()))
+				queryString+=" AND S.VENDOR_MATERIAL_ID='"+fetchStockOnHandReportDTO.getVendorMaterial()+"'";
+			
+			if(!StringUtils.isEmpty(fetchStockOnHandReportDTO.getUPC()))
+				queryString+=" AND S.UOM='"+fetchStockOnHandReportDTO.getUPC()+"'";
+			
+			System.err.println("error is:-"+queryString);
+			SQLQuery query = session.createSQLQuery(queryString);
+			List<Object[]> stockOnHandReportDOList = query.list();
+			if(stockOnHandReportDOList.size()>0){
+				stockOnHandReport=new ArrayList<Object>();
+				for(Object[] obj:stockOnHandReportDOList){
+					stockOnHandReportDTO=new StockOnHandReportDTO();
+					stockOnHandReportDTO.setVendorMaterialId(obj[0] == null ? "" : obj[0].toString());
+					stockOnHandReportDTO.setMaterialId(obj[1] == null ? "" : obj[1].toString());
+					stockOnHandReportDTO.setMaterialdescription(obj[2] == null ? "" : obj[2].toString());
+					stockOnHandReportDTO.setPlant(obj[3] == null ? "" : obj[3].toString());
+					stockOnHandReportDTO.setTotalUnits((double) obj[4]);
+					stockOnHandReportDTO.setUom(obj[5] == null ? "" : obj[4].toString());
+					stockOnHandReport.add((Object)stockOnHandReportDTO);
+				}
+				stockOnHandReportResponse.setMessage("success");
+				stockOnHandReportResponse.setStatusCode(200);
+				stockOnHandReportResponse.setObjList(stockOnHandReport);
+				return stockOnHandReportResponse;
+			}else{
+				stockOnHandReportResponse.setMessage("success");
+				stockOnHandReportResponse.setStatusCode(200);
+				stockOnHandReportResponse.setStatusMesaage("No records Exists");
+				return stockOnHandReportResponse;}
+		}
+		catch(Exception e){
+			System.err.println("exception:-"+e.getMessage());
+			stockOnHandReportResponse.setMessage("failed:-"+e.getMessage());
+			stockOnHandReportResponse.setStatusCode(500);
+			return stockOnHandReportResponse;}}
+		
 	}
 
 

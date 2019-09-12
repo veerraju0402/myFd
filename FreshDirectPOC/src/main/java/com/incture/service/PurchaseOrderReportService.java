@@ -1,16 +1,21 @@
 package com.incture.service;
 
+import com.incture.DTO.FetchPurchaseOrderDTO;
+import com.incture.DTO.FetchRemmitanceReportDTO;
 import com.incture.DTO.PurchaseOrderReportDTO;
-import com.incture.response.PurchaseOrderReportResponse;
+import com.incture.DTO.StockOnHandReportDTO;
+import com.incture.response.ResponseMessage;
 
 public interface PurchaseOrderReportService {
 
-	PurchaseOrderReportResponse addPurchaseOrderReportDetails(PurchaseOrderReportDTO purchaseOrderReportDTO);
+	ResponseMessage addPurchaseOrderReportDetails(PurchaseOrderReportDTO purchaseOrderReportDTO);
 
-	PurchaseOrderReportResponse getAllPurchaseOrderReportDetails();
+	ResponseMessage getAllPurchaseOrderReportDetails();
 
-	PurchaseOrderReportResponse fetchPurchaseOrderReportDetails(PurchaseOrderReportDTO purchaseOrderReportDTO);
 
-	PurchaseOrderReportResponse addPurchaseOrderReportFDeliveryDetails(String poNumber);
+	ResponseMessage addPurchaseOrderReportFDeliveryDetails(String poNumber);
 
+	ResponseMessage fetchPurchaseOrderReportDetails(FetchPurchaseOrderDTO fetchPurchaseOrder);
+
+	
 }

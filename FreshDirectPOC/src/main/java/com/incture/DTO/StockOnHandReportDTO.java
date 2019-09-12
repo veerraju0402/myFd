@@ -8,7 +8,7 @@ public class StockOnHandReportDTO {
 	
 	private String plant;
 	
-	private String MaterialId;
+	private String materialId;
 	
 	private String materialdescription;
 	
@@ -33,11 +33,11 @@ public class StockOnHandReportDTO {
 	}
 
 	public String getMaterialId() {
-		return MaterialId;
+		return materialId;
 	}
 
 	public void setMaterialId(String materialId) {
-		MaterialId = materialId;
+		this.materialId = materialId;
 	}
 
 	public String getMaterialdescription() {

@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.incture.DTO.FetchStockOnHandReportDTO;
 import com.incture.DTO.StockOnHandReportDTO;
-import com.incture.response.StockOnHandReportResponse;
+import com.incture.response.ResponseMessage;
 import com.incture.service.StockOnHandReportService;
 
 @RestController
-@RequestMapping(value="/PurchaseOrderReport")
+@RequestMapping(value="/StockOnHandReport")
 @Configuration
 public class StockOnHandReportController {
 
@@ -26,7 +27,19 @@ public class StockOnHandReportController {
 	}
 	
 	@PostMapping("/addstockOnHandReport")
-	public StockOnHandReportResponse addstockOnHandReportDetails(@RequestBody StockOnHandReportDTO stockOnHandReportDTO){
+	public ResponseMessage addstockOnHandReportDetails(@RequestBody StockOnHandReportDTO stockOnHandReportDTO){
 		return stockOnHandReportService.addstockOnHandReportDetails(stockOnHandReportDTO);
 	}
+	
+	@GetMapping("/getAllStockOnHandReportDetails")
+	public ResponseMessage getAllStockOnHandReportDetails() {
+		return stockOnHandReportService.getAllStockOnHandReportDetails();
+	}
+	
+	@GetMapping("/fetchStockOnHandReport")
+	public ResponseMessage fetchStockOnHandReportDetails(@RequestBody FetchStockOnHandReportDTO fetchStockOnHandReportDTO){
+		return stockOnHandReportService.fetchStockOnHandReportDetails(fetchStockOnHandReportDTO);
+	}
+	
+	
 }

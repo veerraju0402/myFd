@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.incture.DTO.FetchPurchaseOrderDTO;
+import com.incture.DTO.FetchRemmitanceReportDTO;
 import com.incture.DTO.InvoiceReportDTO;
 import com.incture.DTO.PurchaseOrderReportDTO;
+import com.incture.DTO.StockOnHandReportDTO;
 import com.incture.entity.PurchaseOrderReportDO;
-import com.incture.response.InvoiceReportResponse;
-import com.incture.response.PurchaseOrderReportResponse;
+import com.incture.response.ResponseMessage;
 import com.incture.service.PurchaseOrderReportService;
 
 @RestController
@@ -30,20 +32,23 @@ public class PurchaseOrderReportController {
 	}
 	
 	@PostMapping("/addPurchaseOrderReport")
-	public PurchaseOrderReportResponse addPurchaseOrderReportDetails(@RequestBody PurchaseOrderReportDTO purchaseOrderReportDTO){
+	public ResponseMessage addPurchaseOrderReportDetails(@RequestBody PurchaseOrderReportDTO purchaseOrderReportDTO){
 		return purchaseOrderReportService.addPurchaseOrderReportDetails(purchaseOrderReportDTO);}
 	
 	@PostMapping("/poDeliveryDate")
-	public PurchaseOrderReportResponse addPurchaseOrderReportFDeliveryDetails(@RequestParam String poNumber){
+	public ResponseMessage addPurchaseOrderReportFDeliveryDetails(@RequestParam String poNumber){
 		return purchaseOrderReportService.addPurchaseOrderReportFDeliveryDetails(poNumber);}
 	
 	@GetMapping("/getAllPurchaseOrderReport")
-	public PurchaseOrderReportResponse getAllPurchaseOrderReportDetails(){
+	public ResponseMessage getAllPurchaseOrderReportDetails(){
 		return purchaseOrderReportService.getAllPurchaseOrderReportDetails();
 	}
 	
-	@PostMapping("/fetchPurchaseOrderReport")
-	public PurchaseOrderReportResponse fetchPurchaseOrderReportDetails(@RequestBody PurchaseOrderReportDTO purchaseOrderReportDTO){
-		return purchaseOrderReportService.fetchPurchaseOrderReportDetails(purchaseOrderReportDTO);}
+	@GetMapping("/fetchPurchaseOrderReport")
+	public ResponseMessage fetchPurchaseOrderReportDetails(@RequestBody FetchPurchaseOrderDTO fetchPurchaseOrder){
+		return purchaseOrderReportService.fetchPurchaseOrderReportDetails(fetchPurchaseOrder);}
+
 	
+	
+
 }
