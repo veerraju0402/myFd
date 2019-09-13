@@ -13,7 +13,4 @@ public interface InvoiceReportService {
 
 	ResponseMessage getAllInvoiceReportReportDetails();
 	
-	ResponseMessage fetchRemmitanceReportDetails(FetchRemmitanceReportDTO fetchRemmitanceReportDTO);
-
-
 }

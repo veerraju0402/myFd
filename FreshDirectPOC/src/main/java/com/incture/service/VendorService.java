@@ -2,22 +2,22 @@ package com.incture.service;
 
 import com.incture.DTO.UserVendorDTO;
 import com.incture.DTO.VendorDTO;
-import com.incture.response.VendorResponse;
+import com.incture.response.ResponseMessage;
 
 public interface VendorService {
 
-	VendorResponse addVendorDO(VendorDTO vendorDTO);
+	ResponseMessage addVendorDO(VendorDTO vendorDTO);
 
-	VendorResponse getUserVendor(String userId);
+	ResponseMessage getUserVendor(String userId);
 
-	VendorResponse deleteVendorDO(String userId);
+	ResponseMessage deleteVendorDO(String userId);
 
-	VendorResponse deleteUserVendors(String userId);
+	ResponseMessage deleteUserVendors(String userId);
 
-	VendorResponse getAllUserVendors();
+	ResponseMessage getAllUserVendors();
 
-	VendorResponse updateVendorDO(VendorDTO vendorDTO);
+	ResponseMessage updateVendorDO(VendorDTO vendorDTO);
 
-	VendorResponse consumingOdataService(UserVendorDTO userVendorDTO);
+	ResponseMessage consumingOdataService(UserVendorDTO userVendorDTO);
 
 }

@@ -14,31 +14,26 @@ import com.incture.service.InvoiceReportService;
 public class InvoiceReportServiceImpl implements InvoiceReportService {
 	
 	@Autowired
-	InvoiceReportServiceDAO invoiceReportServiceDAO;
+	InvoiceReportServiceDAO invoiceReportServiceDAO1;
 
 	@Override
 	public ResponseMessage addInvoiceReportDetails(InvoiceReportDTO invoiceReportDTO) {
 		
-		return invoiceReportServiceDAO.addInvoiceReportDetails(invoiceReportDTO);
+		return invoiceReportServiceDAO1.addInvoiceReportDetails(invoiceReportDTO);
 	}
 
 	@Override
 	public ResponseMessage fetchInvoiceReportReport(FetchInvoiceReport fetchInvoiceReport) {
 		// TODO Auto-generated method stub
-		return invoiceReportServiceDAO.fetchInvoiceReportReport(fetchInvoiceReport);
+		return invoiceReportServiceDAO1.fetchInvoiceReportReport(fetchInvoiceReport);
 	}
 
 	@Override
 	public ResponseMessage getAllInvoiceReportReportDetails() {
 		// TODO Auto-generated method stub
-		return invoiceReportServiceDAO.getAllInvoiceReportReportDetails();
+		return invoiceReportServiceDAO1.getAllInvoiceReportReportDetails();
 	}
 	
-	@Override
-	public ResponseMessage fetchRemmitanceReportDetails(FetchRemmitanceReportDTO fetchRemmitanceReportDTO) {
-		// TODO Auto-generated method stub
-		return invoiceReportServiceDAO.fetchRemmitanceReportDetails(fetchRemmitanceReportDTO);
-	}
 	
 	/*public InvoiceReportResponse addInvoiceReportDeliverDetails(InvoiceReportDTO invoiceReportDTO) {
 		return invoiceReportServiceDAO.fetchInvoiceReportReport(invoiceReportDTO);

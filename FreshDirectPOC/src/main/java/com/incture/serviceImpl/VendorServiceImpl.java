@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import com.incture.DAO.VendorDAO;
 import com.incture.DTO.UserVendorDTO;
 import com.incture.DTO.VendorDTO;
-import com.incture.response.VendorResponse;
+import com.incture.response.ResponseMessage;
 import com.incture.service.VendorService;
 
 @Service
@@ -16,43 +16,43 @@ public class VendorServiceImpl implements VendorService {
 	VendorDAO vendorDAO;
 
 	@Override
-	public VendorResponse addVendorDO(VendorDTO vendorDTO) {
+	public ResponseMessage addVendorDO(VendorDTO vendorDTO) {
 		// TODO Auto-generated method stub
 		return vendorDAO.addVendorDO(vendorDTO);
 	}
 
 	@Override
-	public VendorResponse getUserVendor(String userId) {
+	public ResponseMessage getUserVendor(String userId) {
 		// TODO Auto-generated method stub
 		return vendorDAO.getUserVendor(userId);
 	}
 
 	@Override
-	public VendorResponse deleteVendorDO(String userId) {
+	public ResponseMessage deleteVendorDO(String userId) {
 		// TODO Auto-generated method stub
 		return vendorDAO.deleteVendorDO(userId);
 	}
 
 	@Override
-	public VendorResponse deleteUserVendors(String userId) {
+	public ResponseMessage deleteUserVendors(String userId) {
 		// TODO Auto-generated method stub
 		return vendorDAO.deleteUserVendors(userId);
 	}
 
 	@Override
-	public VendorResponse getAllUserVendors() {
+	public ResponseMessage getAllUserVendors() {
 		// TODO Auto-generated method stub
 		return vendorDAO.getAllUserVendors();
 	}
 
 	@Override
-	public VendorResponse updateVendorDO(VendorDTO vendorDTO) {
+	public ResponseMessage updateVendorDO(VendorDTO vendorDTO) {
 		// TODO Auto-generated method stub
 		return vendorDAO.updateVendorDO(vendorDTO);
 	}
 
 	@Override
-	public VendorResponse consumingOdataService(UserVendorDTO userVendorDTO)  {
+	public ResponseMessage consumingOdataService(UserVendorDTO userVendorDTO)  {
 		// TODO Auto-generated method stub
 		return vendorDAO.consumingOdataService(userVendorDTO);
 

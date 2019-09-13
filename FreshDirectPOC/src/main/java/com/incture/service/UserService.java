@@ -2,7 +2,6 @@ package com.incture.service;
 
 import com.incture.DTO.UserDTO;
 import com.incture.response.ResponseMessage;
-import com.incture.response.UserResponse;
 
 public interface UserService {
 
@@ -10,16 +9,16 @@ public interface UserService {
 
 	ResponseMessage getAllUserDO();
 
-	UserResponse getUserById(String userId);
+	ResponseMessage getUserById(String userId);
 
-	UserResponse deleteUserDO(String userId);
+	ResponseMessage deleteUserDO(String userId);
 
-	UserResponse updateUserDO(UserDTO userDTO);
+	ResponseMessage updateUserDO(UserDTO userDTO);
 
 
-	UserResponse getUserColumn(String userId);
+	ResponseMessage getUserColumn(String userId);
 
-	UserResponse getUserByVendor(String vendorName);
+	ResponseMessage getUserByVendor(String vendorName);
 
 
 

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.incture.DTO.UserDTO;
 import com.incture.response.ResponseMessage;
-import com.incture.response.UserResponse;
 import com.incture.service.UserService;
 
 @RestController
@@ -38,25 +37,25 @@ public class UserController {
 
 
 	@RequestMapping(value="/deleteUser",method=RequestMethod.DELETE)
-	public UserResponse deleteUserDO(@RequestParam String userId){
+	public ResponseMessage deleteUserDO(@RequestParam String userId){
 		return userService.deleteUserDO(userId);}
 
 	@RequestMapping(value="/getUserById",method=RequestMethod.GET)
-	public UserResponse getUserById(@RequestParam String userId){
+	public ResponseMessage getUserById(@RequestParam String userId){
 		return userService.getUserById(userId);}
 
 	@RequestMapping(value="/getUserByVendor",method=RequestMethod.GET)
-	public UserResponse getUserByVendor(@RequestParam String userId){
+	public ResponseMessage getUserByVendor(@RequestParam String userId){
 		return userService.getUserByVendor(userId);}
 
 
 	@RequestMapping(value="/getVendor",method=RequestMethod.GET)
-	public UserResponse getUserColumn(@RequestParam String vendorName){
+	public ResponseMessage getUserColumn(@RequestParam String vendorName){
 		return userService.getUserColumn(vendorName);}
 
 
 	@RequestMapping(value="/updateUser",method=RequestMethod.POST)
-	public UserResponse updateUserDO(@RequestBody UserDTO userDTO){
+	public ResponseMessage updateUserDO(@RequestBody UserDTO userDTO){
 		return userService.updateUserDO(userDTO);}
 
 

@@ -15,7 +15,6 @@ import org.springframework.stereotype.Repository;
 import com.incture.DTO.UserDTO;
 import com.incture.entity.UserDO;
 import com.incture.response.ResponseMessage;
-import com.incture.response.UserResponse;
 import com.incture.utility.SendMailTLS;
 import com.incture.utility.StringUtils;
 
@@ -29,18 +28,8 @@ public class UserDAO extends BaseDAO {
 	// import
 	public UserDO importToDB(UserDTO userDTO) {
 		UserDO userDO = new UserDO();
-		// BeanUtils.copyProperties(userDTO, userDO);
-		userDO.setUserId(getId());
-		userDO.setEmail(userDTO.getEmail());
-		userDO.setFirstName(userDTO.getFirstName());
-		userDO.setLastName(userDTO.getLastName());
-		userDO.setPanNumber(userDTO.getPanNumber());
-		userDO.setPhoneNumber(userDTO.getPhoneNumber());
-		userDO.setServiceType(userDTO.getServiceType());
-		userDO.setUserRole(userDTO.getUserRole());
-		userDO.setVendorAddress(userDTO.getVendorAddress());
-		userDO.setVendorName(userDTO.getVendorName());
-
+		BeanUtils.copyProperties(userDTO, userDO);
+		
 		return userDO;
 	}
 
@@ -48,17 +37,8 @@ public class UserDAO extends BaseDAO {
 	// export
 	public UserDTO ExportDB1(UserDO userDO) {
 		UserDTO userDTO = new UserDTO();
-		//BeanUtils.copyProperties(userDO, userDTO);
-		userDTO.setUserId(userDO.getUserId());
-		userDTO.setEmail(userDO.getEmail());
-		userDTO.setFirstName(userDO.getFirstName());
-		userDTO.setLastName(userDO.getLastName());
-		userDTO.setPanNumber(userDO.getPanNumber());
-		userDTO.setPhoneNumber(userDO.getPhoneNumber());
-		userDTO.setServiceType(userDO.getServiceType());
-		userDTO.setUserRole(userDO.getUserRole());
-		userDTO.setVendorAddress(userDO.getVendorAddress());
-		userDTO.setVendorName(userDO.getVendorName());
+		BeanUtils.copyProperties(userDO, userDTO);
+	
 
 		return userDTO;
 	}
@@ -187,8 +167,9 @@ public class UserDAO extends BaseDAO {
 	}
 
 
-	public UserResponse getUserByVendor(String vendorName) {
-		UserResponse response=new UserResponse();
+	public ResponseMessage getUserByVendor(String vendorName) {
+		//UserResponse response=new UserResponse();
+		ResponseMessage response=new ResponseMessage();
 		try{
 			session=getSession();
 			UserDO userDO = (UserDO) session.createQuery("from UserDO where vendorName=" +"'"+ vendorName+"'").uniqueResult();
@@ -196,7 +177,8 @@ public class UserDAO extends BaseDAO {
 				UserDTO userDTO=ExportDB1(userDO);
 				response.setStatusCode(200);
 				response.setMessage("success");
-				response.setUserDTO(userDTO);
+				//response.setUserDTO(userDTO);
+				response.setObj(userDTO);
 				return response;}
 			else{
 				response.setStatusCode(200);
@@ -212,8 +194,9 @@ public class UserDAO extends BaseDAO {
 	}
 
 
-	public UserResponse getUserColumn(String userId) {
-		UserResponse response=new UserResponse();
+	public ResponseMessage getUserColumn(String userId) {
+		//UserResponse response=new UserResponse();
+		ResponseMessage response=new ResponseMessage();
 		try{
 			session=getSession();
 			Object obj=session.createQuery("select u.vendorName from UserDO u where u.userId=" +"'"+ userId+"'").uniqueResult();
@@ -235,8 +218,9 @@ public class UserDAO extends BaseDAO {
 		}
 	}
 
-	public UserResponse deleteUserDO(String userId) {
-		UserResponse response=new UserResponse();
+	public ResponseMessage deleteUserDO(String userId) {
+		//UserResponse response=new UserResponse();
+		ResponseMessage response=new ResponseMessage();
 		try {
 			session = getSession();
 			int count=session.createQuery("delete UserDO where userId=" +"'"+ userId+"'").executeUpdate();
@@ -258,8 +242,9 @@ public class UserDAO extends BaseDAO {
 	}
 
 	//update method
-	public UserResponse updateUserDO(UserDTO userDTO) {
-		UserResponse response=new UserResponse();
+	public ResponseMessage updateUserDO(UserDTO userDTO) {
+		//UserResponse response=new UserResponse();
+		ResponseMessage response=new ResponseMessage();
 		if(!StringUtils.isEmpty(userDTO.getUserId())){
 			System.err.println("user id not mentioned");
 			response.setStatusCode(200);

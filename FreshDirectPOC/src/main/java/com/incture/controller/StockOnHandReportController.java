@@ -14,32 +14,32 @@ import com.incture.response.ResponseMessage;
 import com.incture.service.StockOnHandReportService;
 
 @RestController
-@RequestMapping(value="/StockOnHandReport")
+@RequestMapping(value = "/StockOnHandReport")
 @Configuration
 public class StockOnHandReportController {
 
 	@Autowired
 	StockOnHandReportService stockOnHandReportService;
-	
+
 	@GetMapping("/msg")
-	public String message(){
+	public String message() {
 		return "welcome message from StockOnHandReportController";
 	}
-	
+
 	@PostMapping("/addstockOnHandReport")
-	public ResponseMessage addstockOnHandReportDetails(@RequestBody StockOnHandReportDTO stockOnHandReportDTO){
+	public ResponseMessage addstockOnHandReportDetails(@RequestBody StockOnHandReportDTO stockOnHandReportDTO) {
 		return stockOnHandReportService.addstockOnHandReportDetails(stockOnHandReportDTO);
 	}
-	
+
 	@GetMapping("/getAllStockOnHandReportDetails")
 	public ResponseMessage getAllStockOnHandReportDetails() {
 		return stockOnHandReportService.getAllStockOnHandReportDetails();
 	}
-	
+
 	@GetMapping("/fetchStockOnHandReport")
-	public ResponseMessage fetchStockOnHandReportDetails(@RequestBody FetchStockOnHandReportDTO fetchStockOnHandReportDTO){
+	public ResponseMessage fetchStockOnHandReportDetails(
+			@RequestBody FetchStockOnHandReportDTO fetchStockOnHandReportDTO) {
 		return stockOnHandReportService.fetchStockOnHandReportDetails(fetchStockOnHandReportDTO);
 	}
-	
-	
+
 }

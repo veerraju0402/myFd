@@ -44,9 +44,6 @@ InvoiceReportService InvoiceReportService;
 		return InvoiceReportService.fetchInvoiceReportReport(fetchInvoiceReport);
 	}
 	
-	@GetMapping("/fetchRemmitanceReport")
-	public ResponseMessage fetchRemmitanceReportDetails(@RequestBody FetchRemmitanceReportDTO fetchRemmitanceReportDTO){
-		return InvoiceReportService.fetchRemmitanceReportDetails(fetchRemmitanceReportDTO);
-	}
+	
 	
 }

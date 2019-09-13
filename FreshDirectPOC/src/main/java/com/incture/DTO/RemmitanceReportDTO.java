@@ -3,6 +3,9 @@ package com.incture.DTO;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+//@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class RemmitanceReportDTO {
 
 	
@@ -10,9 +13,11 @@ public class RemmitanceReportDTO {
 	
 	private Date paymentDate;
 	
-	private List<String> invoice;
+	private String invoice;
+	private List<String> invoiceList;
 	
-	private List<String> po;
+	private String po;
+	private List<String> poList;
 	
 	private String paymentAmount;
 
@@ -32,20 +37,36 @@ public class RemmitanceReportDTO {
 		this.paymentDate = paymentDate;
 	}
 
-	public List<String> getInvoice() {
+	public String getInvoice() {
 		return invoice;
 	}
 
-	public void setInvoice(List<String> invoice) {
+	public void setInvoice(String invoice) {
 		this.invoice = invoice;
 	}
 
-	public List<String> getPo() {
+	public List<String> getInvoiceList() {
+		return invoiceList;
+	}
+
+	public void setInvoiceList(List<String> invoiceList) {
+		this.invoiceList = invoiceList;
+	}
+
+	public String getPo() {
 		return po;
 	}
 
-	public void setPo(List<String> po) {
+	public void setPo(String po) {
 		this.po = po;
+	}
+
+	public List<String> getPoList() {
+		return poList;
+	}
+
+	public void setPoList(List<String> poList) {
+		this.poList = poList;
 	}
 
 	public String getPaymentAmount() {
@@ -56,5 +77,7 @@ public class RemmitanceReportDTO {
 		this.paymentAmount = paymentAmount;
 	}
 	
+	
+
 	
 }

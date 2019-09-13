@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import com.incture.DAO.UserDAO;
 import com.incture.DTO.UserDTO;
 import com.incture.response.ResponseMessage;
-import com.incture.response.UserResponse;
 import com.incture.service.UserService;
 
 @Service
@@ -29,26 +28,26 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public UserResponse getUserById(String userId) {
+	public ResponseMessage getUserById(String userId) {
 		// TODO Auto-generated method stub
 		return userDAO.getUserById(userId);
 	}
 
 
 	@Override
-	public UserResponse getUserColumn(String userId) {
+	public ResponseMessage getUserColumn(String userId) {
 		// TODO Auto-generated method stub
 		return userDAO.getUserColumn(userId);
 	}
 
 	@Override
-	public UserResponse deleteUserDO(String userId) {
+	public ResponseMessage deleteUserDO(String userId) {
 		// TODO Auto-generated method stub
 		return userDAO.deleteUserDO(userId);
 	}
 
 	@Override
-	public UserResponse updateUserDO(UserDTO userDTO) {
+	public ResponseMessage updateUserDO(UserDTO userDTO) {
 		// TODO Auto-generated method stub
 		return userDAO.updateUserDO(userDTO);
 	}
@@ -57,7 +56,7 @@ public class UserServiceImpl implements UserService{
 
 
 	@Override
-	public UserResponse getUserByVendor(String vendorName) {
+	public ResponseMessage getUserByVendor(String vendorName) {
 		// TODO Auto-generated method stub
 		return userDAO.getUserByVendor(vendorName);
 	}
