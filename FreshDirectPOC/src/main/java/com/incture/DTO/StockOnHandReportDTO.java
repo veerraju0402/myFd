@@ -3,6 +3,7 @@ package com.incture.DTO;
 
 public class StockOnHandReportDTO {
 
+	private int  id;
 	
 	private String vendorMaterialId;
 	
@@ -15,6 +16,16 @@ public class StockOnHandReportDTO {
 	private double totalUnits;
 	
 	private String uom;
+
+	
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getVendorMaterialId() {
 		return vendorMaterialId;

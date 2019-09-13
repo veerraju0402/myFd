@@ -17,7 +17,7 @@ public class PurchaseOrderReportDO {
 	@Column(name="PO_QUANTITY",length=5)
 	private String pOQuantity;
 	
-	@Column(name="TOTAL_PRICE",length=5)
+	@Column(name="TOTAL_PRICE",length=10)
 	private String totalPrice;
 	
 	@Column(name="PLANT",length=4)

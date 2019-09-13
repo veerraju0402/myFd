@@ -14,7 +14,7 @@ import com.incture.response.ResponseMessage;
 import com.incture.service.StockOnHandReportService;
 
 @RestController
-@RequestMapping(value = "/StockOnHandReport")
+@RequestMapping(value = "/stockOnHandReport")
 @Configuration
 public class StockOnHandReportController {
 

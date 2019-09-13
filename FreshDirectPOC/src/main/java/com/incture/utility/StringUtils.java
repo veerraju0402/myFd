@@ -49,8 +49,7 @@ public class StringUtils {
 		
 		try {
 			String sDate1=stringDate;  
-		    Date date1;
-			date1 = new SimpleDateFormat("yyyy-MM-dd").parse(sDate1);
+		    Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(sDate1);
 			return date1;
 		} catch (ParseException e) {
 			System.err.println("Exception:-"+e.getMessage());

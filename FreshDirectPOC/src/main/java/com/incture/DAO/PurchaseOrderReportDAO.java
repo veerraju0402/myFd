@@ -38,19 +38,32 @@ public class PurchaseOrderReportDAO extends BaseDAO {
 		BeanUtils.copyProperties(purchaseOrderReportDO, purchaseOrderReportDTO);
 		return purchaseOrderReportDTO;
 	}
-
+	public   Date getInTime() {
+		TimeZone.setDefault(TimeZone.getTimeZone("IST"));
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		
+       	timestamp.setMonth(6);  //-1 for a month since starts from 0
+       	timestamp.setDate(2);
+		Date currentDate = timestamp;
+		return currentDate;
+	}
+	public   Date getOutTime() {
+		TimeZone.setDefault(TimeZone.getTimeZone("IST"));
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		
+       	timestamp.setMonth(6);  //-1 for a month since starts from 0
+       	timestamp.setDate(2);
+		Date currentDate = timestamp;
+		return currentDate;
+	}
 	public ResponseMessage addPurchaseOrderReportDetails(PurchaseOrderReportDTO purchaseOrderReportDTO) {
-		// PurchaseOrderReportResponse purchaseOrderReportResponse=new
-		// PurchaseOrderReportResponse();
 		ResponseMessage purchaseOrderReportResponse = new ResponseMessage();
 		PurchaseOrderReportDO purchaseOrderReportDO = null;
 		try {
 			session = getSession();
 			if (StringUtils.isEmptyObject(purchaseOrderReportDTO)
-					&& StringUtils.isEmptyDate(purchaseOrderReportDTO.getDeliverDate())) { // if
-				// object
-				// is
-				// empty
+					&& StringUtils.isEmptyDate(purchaseOrderReportDTO.getDeliverDate())) { 
+				
 				purchaseOrderReportResponse.setStatusCode(200);
 				purchaseOrderReportResponse.setMessage("feilds cannot be null");
 				return purchaseOrderReportResponse;
@@ -59,9 +72,8 @@ public class PurchaseOrderReportDAO extends BaseDAO {
 			else {
 
 				purchaseOrderReportDO = importToDB(purchaseOrderReportDTO);
-				purchaseOrderReportDO.setDateCreated(StringUtils.getTime()); // PO
-				// created
-				// date
+			//	purchaseOrderReportDO.setDateCreated(getInTime()); 
+				//purchaseOrderReportDO.setDeliverDate(getOutTime());
 				session.save(purchaseOrderReportDO);
 				purchaseOrderReportResponse.setStatusCode(200);
 				purchaseOrderReportResponse.setMessage("success");
@@ -75,16 +87,15 @@ public class PurchaseOrderReportDAO extends BaseDAO {
 		}
 	}
 
-	public ResponseMessage addPurchaseOrderReportFDeliveryDetails(String poNumber) {
-		// PurchaseOrderReportResponse purchaseOrderReportResponse=new
-		// PurchaseOrderReportResponse();
-		ResponseMessage purchaseOrderReportResponse = new ResponseMessage();
+	public ResponseMessage addPurchaseOrderReportFDeliveryDetails(PurchaseOrderReportDTO purchaseOrderReportDTO) {
+			ResponseMessage purchaseOrderReportResponse = new ResponseMessage();
 		PurchaseOrderReportDO purchaseOrderReportDO = null;
 		try {
 			session = getSession();
-			purchaseOrderReportDO = session.get(PurchaseOrderReportDO.class, poNumber);
+			purchaseOrderReportDO = session.get(PurchaseOrderReportDO.class, purchaseOrderReportDTO.getpONumber());
 			System.err.println("do is:p-" + purchaseOrderReportDO.getpONumber());
-			purchaseOrderReportDO.setDeliverDate(StringUtils.getTime());
+			//purchaseOrderReportDO.setDeliverDate(StringUtils.getTime());
+			purchaseOrderReportDO.setDeliverDate(purchaseOrderReportDTO.getDeliverDate());
 			session.update(purchaseOrderReportDO);
 			purchaseOrderReportResponse.setStatusCode(200);
 			purchaseOrderReportResponse.setMessage("success_date updated");
@@ -96,7 +107,7 @@ public class PurchaseOrderReportDAO extends BaseDAO {
 			return purchaseOrderReportResponse;
 		}
 	}
-
+	
 	public ResponseMessage getAllPurchaseOrderReportDetails() {
 		// PurchaseOrderReportResponse purchaseOrderReportResponse=new
 		// PurchaseOrderReportResponse();
@@ -136,51 +147,19 @@ public class PurchaseOrderReportDAO extends BaseDAO {
 
 		
 		ResponseMessage purchaseOrderReportResponse = new ResponseMessage();
-		fetchPurchaseOrder.setFromDate(convertStringToDate("2019-09-07"));
-		fetchPurchaseOrder.setToDate(convertStringToDate("2019-09-12"));
 		try {
 			
 			if (StringUtils.isEmptyObject(fetchPurchaseOrder)) {
 				return getAllPurchaseOrderReportDetails();
 			} else {
 
-				
+				//System.err.println("inside try block  po dao");
 				List<Object> PurchaseOrderReportDTOList = new ArrayList<Object>();
 				String queryString = "SELECT " + " DISTINCT P.PO_NUMBER," + "P.PO_QUANTITY," + "P.TOTAL_PRICE,"
 						+ "p.PLANT," + "P.DATE_CREATED," + "P.DELIVERY_DATE," + "P.PO_STATUS FROM "
 						+ "\"SYSTEM\".\"PURCHASE_ORDER_REPORT_TABLE\" AS P " + "INNER JOIN  "
 						+ "\"SYSTEM\".\"STOCK_ON_HAND_REPORT\" AS S " + " ON P.PLANT=S.PLANT WHERE (1=1) ";
-				/*
-				 * String queryString="SELECT \" *\"  FROM "
-				 * +"\"SYSTEM\".\"PURCHASE_ORDER_REPORT_TABLE\" AS P "
-				 * +"INNER JOIN  "+"\"SYSTEM\".\"STOCK_ON_HAND_REPORT\" AS S "
-				 * +" ON P.PLANT=S.PLANT WHERE (1=1) ";
-				 */
-				/*
-				 * if(!StringUtils.isEmpty(fetchPurchaseOrder.getPoNumber()))
-				 * queryString+=" AND P.PO_NUMBER='"+fetchPurchaseOrder.
-				 * getPoNumber()+"' ";
-				 * if(!StringUtils.isEmpty(fetchPurchaseOrder.
-				 * getVendorMaterialNumber()))
-				 * queryString+=" AND  S.MATERIAL_ID='"+fetchPurchaseOrder.
-				 * getVendorMaterialNumber()+"' ";
-				 * if(!StringUtils.isEmpty(fetchPurchaseOrder.
-				 * getMaterialDescription()))
-				 * queryString+=" AND S.MATERIAL_DESCRIPTION='"
-				 * +fetchPurchaseOrder.getMaterialDescription()+"' ";
-				 * if(!StringUtils.isEmpty(fetchPurchaseOrder.getPlant()))
-				 * queryString+=" AND P.PLANT='"+fetchPurchaseOrder.getPlant()
-				 * +"' ";
-				 * if(!StringUtils.isEmptyDate(fetchPurchaseOrder.getFromDate())
-				 * ) queryString+=" AND P.DATE_CREATED='"+fetchPurchaseOrder.
-				 * getFromDate()+"' ";
-				 * if(!StringUtils.isEmptyDate(fetchPurchaseOrder.getToDate()))
-				 * queryString+=" AND P.DELIVERY_DATE'"+fetchPurchaseOrder.
-				 * getToDate()+"' ";
-				 * if(!StringUtils.isEmpty(fetchPurchaseOrder.getStatus()))
-				 * queryString+=" AND P.PO_STATUS='"+fetchPurchaseOrder.
-				 * getStatus()+"' ";
-				 */
+				
 
 				if (!StringUtils.isEmpty(fetchPurchaseOrder.getPlant()))
 					queryString += " AND P.PLANT='" + fetchPurchaseOrder.getPlant() + "' ";
@@ -230,16 +209,5 @@ public class PurchaseOrderReportDAO extends BaseDAO {
 			return purchaseOrderReportResponse;
 		}
 	}
-public Date convertStringToDate(String strringDate){	
-		try {
-			String sDate1=strringDate;  
-		    Date date1;
-			date1 = new SimpleDateFormat("yyyy-MM-dd").parse(sDate1);
-			return date1;
-		} catch (ParseException e) {
-			System.err.println("Exception:-"+e.getMessage());
-			return null;
-		}  }
-	
 
 }

@@ -78,6 +78,7 @@ public class UserDAO extends BaseDAO {
 
 			session=getSession();
 			UserDO userDO=importToDB(userDTO);
+			userDO.setUserId(getId());
 			String uniqueId=userDO.getUserId();
 			System.err.println("id is "+uniqueId);
 			mailMessage=sendMailTLS.main(userDTO.getEmail(),uniqueId);

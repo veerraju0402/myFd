@@ -150,6 +150,7 @@ public class StockOnHandReportDAO extends BaseDAO{
 		}
 		catch(Exception e){
 			System.err.println("exception:-"+e.getMessage());
+			LOGGER.error("Exception:-"+e.getMessage());
 			stockOnHandReportResponse.setMessage("failed:-"+e.getMessage());
 			stockOnHandReportResponse.setStatusCode(500);
 			return stockOnHandReportResponse;}}

@@ -13,7 +13,7 @@ public interface PurchaseOrderReportService {
 	ResponseMessage getAllPurchaseOrderReportDetails();
 
 
-	ResponseMessage addPurchaseOrderReportFDeliveryDetails(String poNumber);
+	ResponseMessage addPurchaseOrderReportFDeliveryDetails(PurchaseOrderReportDTO purchaseOrderReportDTO);
 
 	ResponseMessage fetchPurchaseOrderReportDetails(FetchPurchaseOrderDTO fetchPurchaseOrder);
 

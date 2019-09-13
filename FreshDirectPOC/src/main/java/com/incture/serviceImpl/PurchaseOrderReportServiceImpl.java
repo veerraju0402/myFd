@@ -31,9 +31,9 @@ public class PurchaseOrderReportServiceImpl implements PurchaseOrderReportServic
 	}
 
 	@Override
-	public ResponseMessage addPurchaseOrderReportFDeliveryDetails(String poNumber) {
+	public ResponseMessage addPurchaseOrderReportFDeliveryDetails(PurchaseOrderReportDTO purchaseOrderReportDTO) {
 		// TODO Auto-generated method stub
-		return purchaseOrderReportDAO.addPurchaseOrderReportFDeliveryDetails(poNumber);
+		return purchaseOrderReportDAO.addPurchaseOrderReportFDeliveryDetails(purchaseOrderReportDTO);
 	}
 
 	@Override

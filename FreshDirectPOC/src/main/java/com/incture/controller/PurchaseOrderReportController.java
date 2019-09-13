@@ -15,7 +15,7 @@ import com.incture.response.ResponseMessage;
 import com.incture.service.PurchaseOrderReportService;
 
 @RestController
-@RequestMapping(value = "/PurchaseOrderReport")
+@RequestMapping(value = "/purchaseOrderReport")
 @Configuration
 public class PurchaseOrderReportController {
 
@@ -33,8 +33,8 @@ public class PurchaseOrderReportController {
 	}
 
 	@PostMapping("/poDeliveryDate")
-	public ResponseMessage addPurchaseOrderReportFDeliveryDetails(@RequestParam String poNumber) {
-		return purchaseOrderReportService.addPurchaseOrderReportFDeliveryDetails(poNumber);
+	public ResponseMessage addPurchaseOrderReportFDeliveryDetails(@RequestBody PurchaseOrderReportDTO purchaseOrderReportDTO) {
+		return purchaseOrderReportService.addPurchaseOrderReportFDeliveryDetails(purchaseOrderReportDTO);
 	}
 
 	@GetMapping("/getAllPurchaseOrderReport")
@@ -44,6 +44,7 @@ public class PurchaseOrderReportController {
 
 	@GetMapping("/fetchPurchaseOrderReport")
 	public ResponseMessage fetchPurchaseOrderReportDetails(@RequestBody FetchPurchaseOrderDTO fetchPurchaseOrder) {
+		//System.err.println("fetchPurchaseOrderReport controller");
 		return purchaseOrderReportService.fetchPurchaseOrderReportDetails(fetchPurchaseOrder);
 	}
 

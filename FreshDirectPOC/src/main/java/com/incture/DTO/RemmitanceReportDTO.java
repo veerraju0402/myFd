@@ -14,10 +14,8 @@ public class RemmitanceReportDTO {
 	private Date paymentDate;
 	
 	private String invoice;
-	private List<String> invoiceList;
 	
 	private String po;
-	private List<String> poList;
 	
 	private String paymentAmount;
 
@@ -45,13 +43,6 @@ public class RemmitanceReportDTO {
 		this.invoice = invoice;
 	}
 
-	public List<String> getInvoiceList() {
-		return invoiceList;
-	}
-
-	public void setInvoiceList(List<String> invoiceList) {
-		this.invoiceList = invoiceList;
-	}
 
 	public String getPo() {
 		return po;
@@ -61,14 +52,7 @@ public class RemmitanceReportDTO {
 		this.po = po;
 	}
 
-	public List<String> getPoList() {
-		return poList;
-	}
-
-	public void setPoList(List<String> poList) {
-		this.poList = poList;
-	}
-
+	
 	public String getPaymentAmount() {
 		return paymentAmount;
 	}

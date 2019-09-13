@@ -2,15 +2,23 @@ package com.incture.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name="STOCK_ON_HAND_REPORT")
 public class StockOnHandReportDO {
 	
 	@Id
+	@GenericGenerator(name="inc",strategy="increment")
+	@GeneratedValue(generator="inc")  
+	@Column(name="ID")
+	private int  id;
+	
 	@Column(name="VENDOR_MATERIAL_ID",length=10)
 	private String vendorMaterialId;
 	
@@ -20,7 +28,7 @@ public class StockOnHandReportDO {
 	@Column(name="MATERIAL_ID",length=10)
 	private String MaterialId;
 	
-	@Column(name="MATERIAL_DESCRIPTION",length=20)
+	@Column(name="MATERIAL_DESCRIPTION",length=50)
 	private String materialdescription;
 	
 	@Column(name="TOTAL_UNITS")
@@ -28,6 +36,16 @@ public class StockOnHandReportDO {
 	
 	@Column(name="UOM")
 	private String uom;
+
+	
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getVendorMaterialId() {
 		return vendorMaterialId;
