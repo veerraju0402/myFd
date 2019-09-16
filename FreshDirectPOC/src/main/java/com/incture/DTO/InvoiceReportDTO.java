@@ -7,6 +7,8 @@ public class InvoiceReportDTO {
 
 	
 private String vendorInvoice;
+
+private int  id;
 	
 	private String purchaseOrder;
 	
@@ -19,6 +21,16 @@ private String vendorInvoice;
 	private Date clearingDate;
 	
 	private String paymentReference;
+	
+	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getVendorInvoice() {
 		return vendorInvoice;

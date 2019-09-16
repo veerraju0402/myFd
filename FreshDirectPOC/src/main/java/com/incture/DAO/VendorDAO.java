@@ -83,7 +83,6 @@ public class VendorDAO extends BaseDAO {
 	// -------------------------------------------------------------
 
 	public ResponseMessage addVendorDO(VendorDTO vendorDTO) {
-		// VendorResponse response=new VendorResponse();
 		ResponseMessage response = new ResponseMessage();
 		if (StringUtils.isEmptyObject(vendorDTO)) {
 			response.setStatusCode(200);
@@ -159,7 +158,6 @@ public class VendorDAO extends BaseDAO {
 			if (!StringUtils.isEmptyObject(vendorDO))
 				venderDODoToUserVenderDTO(vendorDO);
 			response.setStatusCode(200);
-			// response.setUserVendorDTO(userVendorDTO);
 			response.setObj(userVendorDTO);
 			return response;
 
@@ -172,7 +170,6 @@ public class VendorDAO extends BaseDAO {
 	}
 
 	public ResponseMessage deleteVendorDO(String userId) {
-		// VendorResponse response=new VendorResponse();
 		ResponseMessage response = new ResponseMessage();
 		try {
 			session = getSession();
@@ -197,7 +194,6 @@ public class VendorDAO extends BaseDAO {
 	}
 
 	public ResponseMessage updateVendorDO(VendorDTO vendorDTO) {
-		// VendorResponse response=new VendorResponse();
 		ResponseMessage response = new ResponseMessage();
 		if (StringUtils.isEmpty(vendorDTO.getVendorId())) {
 			System.err.println("Vendor Id cannot be null");
@@ -261,7 +257,6 @@ public class VendorDAO extends BaseDAO {
 	}
 
 	public ResponseMessage deleteUserVendors(String userId) {
-		// VendorResponse response=new VendorResponse();
 		ResponseMessage response = new ResponseMessage();
 		try {
 			session = getSession();
@@ -341,7 +336,6 @@ public class VendorDAO extends BaseDAO {
 	}
 
 	public ResponseMessage consumingOdataService(UserVendorDTO userVendorDTO) {
-		// VendorResponse response=new VendorResponse();
 		ResponseMessage response = new ResponseMessage();
 		try {
 			String entity = objectToStringConvertion(userVendorDTO);

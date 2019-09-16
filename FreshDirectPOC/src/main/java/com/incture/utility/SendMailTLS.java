@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
 public class SendMailTLS {
 
 	public static  String main(String toMail,String vendorId) throws FileNotFoundException {
-		final String username = "akula.veerraju@incture.com";
+		final String username = "veerraju.0402@gmail.com";
 		final String password = "Raju@123";
 
 		Properties props = new Properties();

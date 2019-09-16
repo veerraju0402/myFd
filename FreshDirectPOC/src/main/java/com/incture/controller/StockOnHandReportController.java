@@ -36,7 +36,7 @@ public class StockOnHandReportController {
 		return stockOnHandReportService.getAllStockOnHandReportDetails();
 	}
 
-	@GetMapping("/fetchStockOnHandReport")
+	@PostMapping("/fetchStockOnHandReport")
 	public ResponseMessage fetchStockOnHandReportDetails(
 			@RequestBody FetchStockOnHandReportDTO fetchStockOnHandReportDTO) {
 		return stockOnHandReportService.fetchStockOnHandReportDetails(fetchStockOnHandReportDTO);

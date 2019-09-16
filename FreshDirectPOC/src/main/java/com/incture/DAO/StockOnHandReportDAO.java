@@ -37,7 +37,6 @@ public class StockOnHandReportDAO extends BaseDAO{
 
 
 	public ResponseMessage addstockOnHandReportDetails(StockOnHandReportDTO stockOnHandReportDTO) {
-		//StockOnHandReportResponse stockOnHandReportResponse=new StockOnHandReportResponse();
 		ResponseMessage stockOnHandReportResponse=new ResponseMessage();
 		StockOnHandReportDO purchaseOrderReportDO=null;
 		try{
@@ -101,9 +100,13 @@ public class StockOnHandReportDAO extends BaseDAO{
 
 	@SuppressWarnings("null")
 	public ResponseMessage fetchStockOnHandReportDetails(FetchStockOnHandReportDTO fetchStockOnHandReportDTO) {
+		
+		if(StringUtils.isEmptyObject(fetchStockOnHandReportDTO)){
+			return getAllStockOnHandReportDetails();
+		}
+		else{
 		ResponseMessage stockOnHandReportResponse=new ResponseMessage();
 		List<Object> stockOnHandReport=null;
-		//List<StockOnHandReportDTO> stockOnHandReportDTOList=null;
 		StockOnHandReportDTO stockOnHandReportDTO=null;
 		if(StringUtils.isEmptyObject(fetchStockOnHandReportDTO)){
 			return getAllStockOnHandReportDetails();
@@ -157,6 +160,6 @@ public class StockOnHandReportDAO extends BaseDAO{
 		
 	}
 
-
+	}
 
 }

@@ -2,8 +2,12 @@ package com.incture.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
 import java.util.Date;
 
 @Entity
@@ -11,6 +15,11 @@ import java.util.Date;
 public class InvoiceReportDO {
 
 	@Id
+	@GenericGenerator(name="inc",strategy="increment")
+	@GeneratedValue(generator="inc")  
+	@Column(name="ID")
+	private int  id;
+	
 	@Column(name="VENDOR_INVOICE",length=10)
 	private String vendorInvoice;
 	
@@ -31,6 +40,16 @@ public class InvoiceReportDO {
 	
 	@Column(name="PAYMENT_REFERENCE",length=20)
 	private String paymentReference;
+
+	
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getVendorInvoice() {
 		return vendorInvoice;

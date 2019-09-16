@@ -39,7 +39,7 @@ InvoiceReportService InvoiceReportService;
 		return InvoiceReportService.getAllInvoiceReportReportDetails();
 	}
 	
-	@GetMapping("/fetchInvoiceReport")
+	@PostMapping("/fetchInvoiceReport")
 	public ResponseMessage fetchInvoiceReportReport(@RequestBody FetchInvoiceReport fetchInvoiceReport){
 		return InvoiceReportService.fetchInvoiceReportReport(fetchInvoiceReport);
 	}

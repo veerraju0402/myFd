@@ -2,8 +2,12 @@ package com.incture.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
 import java.util.Date;
 
 @Entity
@@ -11,16 +15,21 @@ import java.util.Date;
 public class PurchaseOrderReportDO {
 	
 	@Id
-	@Column(name="PO_NUMBER",length=10)
+	@GenericGenerator(name="inc",strategy="increment")
+	@GeneratedValue(generator="inc")  
+	@Column(name="ID")
+	private int  id;
+	
+	@Column(name="PO_NUMBER",length=20)
 	private String pONumber;
 	
-	@Column(name="PO_QUANTITY",length=5)
+	@Column(name="PO_QUANTITY",length=20)
 	private String pOQuantity;
 	
-	@Column(name="TOTAL_PRICE",length=10)
+	@Column(name="TOTAL_PRICE",length=20)
 	private String totalPrice;
 	
-	@Column(name="PLANT",length=4)
+	@Column(name="PLANT",length=10)
 	private String plant;
 	
 	@Column(name="DATE_CREATED")
@@ -29,8 +38,18 @@ public class PurchaseOrderReportDO {
 	@Column(name="DELIVERY_DATE")
 	private Date deliverDate;
 	
-	@Column(name="PO_STATUS",length=5)
+	@Column(name="PO_STATUS",length=10)
 	private String pOStatus;
+
+	
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getpONumber() {
 		return pONumber;

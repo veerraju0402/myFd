@@ -66,7 +66,6 @@ public class UserDAO extends BaseDAO {
 
 	// adding user details
 	public ResponseMessage addUserDO(UserDTO userDTO) {
-		//UserResponse response=new UserResponse();
 		ResponseMessage response=new ResponseMessage();
 		String mailMessage=null;
 		if(StringUtils.isEmpty(userDTO.getEmail()) || StringUtils.isEmpty(userDTO.getVendorName()) ){
@@ -101,9 +100,7 @@ public class UserDAO extends BaseDAO {
 
 
 	public ResponseMessage getAllUserDO() {
-		//UserResponse response=new UserResponse();
 		ResponseMessage response=new ResponseMessage();
-		//List<UserDTO> userDTOList=new ArrayList<UserDTO>();
 		List<Object> userDTOList=new ArrayList<Object>();
 		try{
 			session=getSession();
@@ -134,7 +131,6 @@ public class UserDAO extends BaseDAO {
 
 	//get user by id
 	public ResponseMessage getUserById(String userId) {
-		//UserResponse response=new UserResponse();
 		ResponseMessage response=new ResponseMessage();
 		try{
 			session=getSession();
@@ -196,7 +192,6 @@ public class UserDAO extends BaseDAO {
 
 
 	public ResponseMessage getUserColumn(String userId) {
-		//UserResponse response=new UserResponse();
 		ResponseMessage response=new ResponseMessage();
 		try{
 			session=getSession();
@@ -220,7 +215,6 @@ public class UserDAO extends BaseDAO {
 	}
 
 	public ResponseMessage deleteUserDO(String userId) {
-		//UserResponse response=new UserResponse();
 		ResponseMessage response=new ResponseMessage();
 		try {
 			session = getSession();
@@ -244,7 +238,6 @@ public class UserDAO extends BaseDAO {
 
 	//update method
 	public ResponseMessage updateUserDO(UserDTO userDTO) {
-		//UserResponse response=new UserResponse();
 		ResponseMessage response=new ResponseMessage();
 		if(!StringUtils.isEmpty(userDTO.getUserId())){
 			System.err.println("user id not mentioned");

@@ -42,7 +42,7 @@ public class PurchaseOrderReportController {
 		return purchaseOrderReportService.getAllPurchaseOrderReportDetails();
 	}
 
-	@GetMapping("/fetchPurchaseOrderReport")
+	@PostMapping("/fetchPurchaseOrderReport")
 	public ResponseMessage fetchPurchaseOrderReportDetails(@RequestBody FetchPurchaseOrderDTO fetchPurchaseOrder) {
 		//System.err.println("fetchPurchaseOrderReport controller");
 		return purchaseOrderReportService.fetchPurchaseOrderReportDetails(fetchPurchaseOrder);

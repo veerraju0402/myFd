@@ -42,8 +42,9 @@ public class PurchaseOrderReportDAO extends BaseDAO {
 		TimeZone.setDefault(TimeZone.getTimeZone("IST"));
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		
-       	timestamp.setMonth(6);  //-1 for a month since starts from 0
-       	timestamp.setDate(2);
+       	timestamp.setMonth(3);  //-1 for a month since starts from 0
+       	timestamp.setDate(5);
+       	timestamp.setYear(2016-1900);
 		Date currentDate = timestamp;
 		return currentDate;
 	}
@@ -51,8 +52,9 @@ public class PurchaseOrderReportDAO extends BaseDAO {
 		TimeZone.setDefault(TimeZone.getTimeZone("IST"));
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		
-       	timestamp.setMonth(6);  //-1 for a month since starts from 0
-       	timestamp.setDate(2);
+       	timestamp.setMonth(3);  //-1 for a month since starts from 0
+       	timestamp.setDate(5);
+       	timestamp.setYear(2016-1900);
 		Date currentDate = timestamp;
 		return currentDate;
 	}
@@ -72,8 +74,8 @@ public class PurchaseOrderReportDAO extends BaseDAO {
 			else {
 
 				purchaseOrderReportDO = importToDB(purchaseOrderReportDTO);
-			//	purchaseOrderReportDO.setDateCreated(getInTime()); 
-				//purchaseOrderReportDO.setDeliverDate(getOutTime());
+				purchaseOrderReportDO.setDateCreated(getInTime()); 
+				purchaseOrderReportDO.setDeliverDate(getOutTime());
 				session.save(purchaseOrderReportDO);
 				purchaseOrderReportResponse.setStatusCode(200);
 				purchaseOrderReportResponse.setMessage("success");
@@ -109,11 +111,8 @@ public class PurchaseOrderReportDAO extends BaseDAO {
 	}
 	
 	public ResponseMessage getAllPurchaseOrderReportDetails() {
-		// PurchaseOrderReportResponse purchaseOrderReportResponse=new
-		// PurchaseOrderReportResponse();
-		ResponseMessage purchaseOrderReportResponse = new ResponseMessage();
+			ResponseMessage purchaseOrderReportResponse = new ResponseMessage();
 		PurchaseOrderReportDTO purchaseOrderReportDTO = null;
-		// List<PurchaseOrderReportDTO> purchaseOrderReportDTOList=null;
 		List<Object> purchaseOrderReportDTOList = null;
 		try {
 			session = getSession();
@@ -144,8 +143,10 @@ public class PurchaseOrderReportDAO extends BaseDAO {
 	}
 
 	public ResponseMessage fetchPurchaseOrderReportDetails(FetchPurchaseOrderDTO fetchPurchaseOrder) {
-
-		
+if(StringUtils.isEmptyObject(fetchPurchaseOrder)){
+	return getAllPurchaseOrderReportDetails();
+	}
+else{
 		ResponseMessage purchaseOrderReportResponse = new ResponseMessage();
 		try {
 			
@@ -170,7 +171,7 @@ public class PurchaseOrderReportDAO extends BaseDAO {
 				if (!StringUtils.isEmpty(fetchPurchaseOrder.getMaterialDescription()))
 					queryString += " AND S.MATERIAL_DESCRIPTION='" + fetchPurchaseOrder.getMaterialDescription() + "' ";
 				if (!StringUtils.isEmptyDate(fetchPurchaseOrder.getFromDate())&& !StringUtils.isEmptyDate(fetchPurchaseOrder.getToDate()))
-					queryString += " AND P.DATE_CREATED BETWEEN '" + StringUtils.convertDateToString(fetchPurchaseOrder.getFromDate()) + "' "+ " AND'" + StringUtils.convertDateToString(fetchPurchaseOrder.getToDate())+"'";
+					queryString += " AND P.DATE_CREATED BETWEEN '" + StringUtils.convertDateToString(fetchPurchaseOrder.getFromDate()) + "' "+ " AND '" + StringUtils.convertDateToString(fetchPurchaseOrder.getToDate())+"'";
 				if (!StringUtils.isEmpty(fetchPurchaseOrder.getStatus()))
 					queryString += " AND P.PO_STATUS='" + fetchPurchaseOrder.getStatus() + "' ";
 				//select * from "SYSTEM"."PURCHASE_ORDER_REPORT_TABLE" where DATE_CREATED between '2019-01-03' and '2019-09-22';
@@ -209,5 +210,5 @@ public class PurchaseOrderReportDAO extends BaseDAO {
 			return purchaseOrderReportResponse;
 		}
 	}
-
+	}
 }

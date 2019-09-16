@@ -19,13 +19,13 @@ public class StockOnHandReportDO {
 	@Column(name="ID")
 	private int  id;
 	
-	@Column(name="VENDOR_MATERIAL_ID",length=10)
+	@Column(name="VENDOR_MATERIAL_ID",length=20)
 	private String vendorMaterialId;
 	
-	@Column(name="PLANT",length=4)
+	@Column(name="PLANT",length=20)
 	private String plant;
 	
-	@Column(name="MATERIAL_ID",length=10)
+	@Column(name="MATERIAL_ID",length=20)
 	private String MaterialId;
 	
 	@Column(name="MATERIAL_DESCRIPTION",length=50)
