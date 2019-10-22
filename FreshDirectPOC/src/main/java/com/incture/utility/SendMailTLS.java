@@ -22,7 +22,7 @@ public class SendMailTLS {
 
 	public static  String main(String toMail,String vendorId) throws FileNotFoundException {
 		final String username = "veerraju.0402@gmail.com";
-		final String password = "Raju@123";
+		final String password = "******";
 
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
